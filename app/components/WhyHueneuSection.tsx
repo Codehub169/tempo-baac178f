@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sparkles } from 'lucide-react';
+import Image from 'next/image'; // Import Next Image
 
 const WhyHueneuSection: React.FC = () => {
   return (
@@ -12,12 +13,24 @@ const WhyHueneuSection: React.FC = () => {
 
         {/* Poetic Brand Pitch */}
         <p className="p-style-emphasis text-2xl md:text-3xl mb-8 leading-relaxed text-gray-700">
-          We don’t just design—<span className="text-accent-hue-1">we decode stories</span>.
+          We don	 just design—<span className="text-accent-hue-1">we decode stories</span>.
         </p>
         
         <p className="p-style text-lg md:text-xl mb-8 leading-relaxed text-gray-600">
           In a world that often shouts, we believe in the power of the whisper. Designs that speak quietly but resonate deeply, lingering in thought and feeling long after they're seen. At hueneu, we unearth the essence of your narrative and translate it into visuals that are not only beautiful but meaningful.
         </p>
+
+        {/* Placeholder Image */}
+        <div className="my-12 md:my-16 rounded-lg overflow-hidden shadow-lg">
+          <Image
+            src="https://picsum.photos/seed/why-hueneu/800/500" // Replace with your actual image
+            alt="Image representing meaningful design and storytelling"
+            width={800}
+            height={500}
+            className="w-full h-auto object-cover"
+          />
+        </div>
+        <p className="text-xs text-secondary-neutral mb-12">Image placeholder: Replace with a relevant photo.</p>
 
         <p className="p-style text-lg md:text-xl mb-12 leading-relaxed text-gray-600">
           We embrace the calm, dance with mystery, and strive for that perfect balance—where vibrant creativity meets grounding intention. It's about creating an experience, a connection, a quiet confidence that your story is being told authentically and with soul.
