@@ -3,18 +3,18 @@
 # Exit immediately if a command exits with a non-zero status.
 set -e
 
-# Navigate to the script's directory (optional, assumes execution from project root)
-# cd "$(dirname "$0")"
+# Navigate to the script's directory to ensure commands run in the project root.
+echo "Changing to script directory: $(dirname "$0")"
+cd "$(dirname "$0")" || exit
 
 # Install dependencies
 echo "Installing project dependencies..."
 npm install
 
-# Build the Next.js application
-echo "Building the Next.js application..."
+# Build the application (e.g., Next.js)
+echo "Building the application..."
 npm run build
 
-# Start the Next.js application
-# The package.json start script already specifies port 9000.
-echo "Starting the Next.js application on port 9000..."
-npm run start
+# Start the application on port 9000
+echo "Starting the application on port 9000 (via PORT=9000 npm run start)..."
+PORT=9000 npm run start
