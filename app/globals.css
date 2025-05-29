@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-primary-neutral text-text-dark antialiased font-sans;
+    /* Ensures text rendering is smooth */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar for a more integrated feel - Webkit browsers */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-primary-neutral;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-secondary-neutral rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-opacity-80;
+  }
+
+  /* Basic selection color override to match theme */
+  ::selection {
+    @apply bg-accent-hue-2 text-white;
+  }
+}
+
+@layer components {
+  /* Reusable container component for consistent padding and max-width */
+  .section-container {
+    @apply container mx-auto px-6 py-16 md:py-24 lg:py-32;
+  }
+
+  /* Styling for headings to maintain consistency */
+  .h1-style {
+    @apply font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-text-dark;
+  }
+
+  .h2-style {
+    @apply font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-text-dark;
+  }
+
+  .h3-style {
+    @apply font-sans text-2xl md:text-3xl font-semibold text-text-dark;
+  }
+
+  .p-style {
+    @apply font-sans text-base md:text-lg text-secondary-neutral leading-relaxed;
+  }
+
+  .p-style-emphasis {
+    @apply font-sans text-base md:text-lg text-text-dark leading-relaxed;
+  }
+}
