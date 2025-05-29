@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Outfit } from 'next/font/google';
 import './globals.css';
-import Footer from './components/Footer'; // Import Footer
+import Footer from './components/Footer'; // Import the Footer component
 
 // Configure the Outfit font
 const outfit = Outfit({
@@ -66,11 +66,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${outfit.variable} scroll-smooth`}>
-      <body className="bg-primary-neutral text-text-dark antialiased font-sans flex flex-col min-h-screen">
+      <body className="bg-primary-neutral text-text-dark antialiased font-primary flex flex-col min-h-screen">
         <div className="flex-grow">
           {children}
         </div>
-        <Footer />
+        <Footer /> 
       </body>
     </html>
   );

@@ -1,25 +1,29 @@
-"use client";
+'use client';
 
 import React from 'react';
-import { Palette, Box, Share2, BookOpen, Coffee, Wand2 } from 'lucide-react';
+import Image from 'next/image'; // Import next/image
+import { Palette, Box } from 'lucide-react'; // Removed unused icons: Share2, BookOpen, Coffee, Wand2
 
 interface ServiceItemProps {
-  icon: React.ReactNode;
+  icon?: React.ReactNode; // For Lucide icons
+  iconSrc?: string;       // For image paths (SVG)
+  iconAlt?: string;       // Alt text for images
   title: string;
   description: string;
 }
 
-const ServiceItem: React.FC<ServiceItemProps> = ({ icon, title, description }) => (
+const ServiceItem: React.FC<ServiceItemProps> = ({ icon, iconSrc, iconAlt, title, description }) => (
   <div className="bg-primary-neutral p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col items-center text-center group transform hover:-translate-y-1">
-    <div className="mb-4 text-accent-hue-1 group-hover:text-accent-hue-2 transition-colors duration-300">
-      {React.cloneElement(icon as React.ReactElement, { size: 40, strokeWidth: 1.5 })}
+    <div className="mb-4 text-accent-hue-1 group-hover:text-accent-hue-2 transition-colors duration-300 w-10 h-10 flex items-center justify-center">
+      {icon && React.cloneElement(icon as React.ReactElement, { size: 40, strokeWidth: 1.5 })}
+      {iconSrc && <Image src={iconSrc} alt={iconAlt || title} width={40} height={40} />}
     </div>
     <h3 className="font-serif text-xl text-text-dark mb-2">{title}</h3>
     <p className="font-sans text-sm text-secondary-neutral italic">{description}</p>
   </div>
 );
 
-const services = [
+const services: ServiceItemProps[] = [
   {
     icon: <Palette />,
     title: "Branding",
@@ -31,22 +35,26 @@ const services = [
     description: "Packaging, but make it poetic."
   },
   {
-    icon: <Share2 />,
+    iconSrc: "/icons/social-media.svg",
+    iconAlt: "Social Media Icon",
     title: "Social Media",
     description: "Digital stories that connect and captivate."
   },
   {
-    icon: <BookOpen />,
+    iconSrc: "/icons/stationery.svg",
+    iconAlt: "Stationery Icon",
     title: "Stationery",
     description: "Tangible touches that leave a lasting impression."
   },
   {
-    icon: <Coffee />,
+    iconSrc: "/icons/coffee-table-books.svg",
+    iconAlt: "Coffee Table Books Icon",
     title: "Coffee Table Books",
     description: "Curating narratives for cherished collections."
   },
   {
-    icon: <Wand2 />,
+    iconSrc: "/icons/creative-projects.svg",
+    iconAlt: "Creative Projects Icon",
     title: "Creative Projects",
     description: "Bringing unique visions to vibrant life."
   }
@@ -63,7 +71,14 @@ const WhatWeDoSection: React.FC = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
         {services.map((service, index) => (
-          <ServiceItem key={index} icon={service.icon} title={service.title} description={service.description} />
+          <ServiceItem 
+            key={service.title} // Using title as key, assuming titles are unique and stable
+            icon={service.icon} 
+            iconSrc={service.iconSrc} 
+            iconAlt={service.iconAlt}
+            title={service.title} 
+            description={service.description} 
+          />
         ))}
       </div>
     </section>
