@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image'; // Import next/image
+// Image import removed as it's no longer used in this file after the change
 import { Palette, Box } from 'lucide-react'; // Removed unused icons: Share2, BookOpen, Coffee, Wand2
 
 interface ServiceItemProps {
@@ -14,16 +14,16 @@ interface ServiceItemProps {
 
 const ServiceItem: React.FC<ServiceItemProps> = ({ icon, iconSrc, iconAlt, title, description }) => (
   <div className="bg-primary-neutral p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col items-center text-center group transform hover:-translate-y-1">
-    <div className="mb-4 w-10 h-10 flex items-center justify-center"> {/* Common sizing and positioning wrapper */}
-      {icon && ( // Branch for Lucide icons
-        <span className="text-accent-hue-1 group-hover:text-accent-hue-2 transition-colors duration-300 flex items-center justify-center w-full h-full">
+    <div className="mb-4 w-10 h-10 flex items-center justify-center">
+      {icon && (
+        // Lucide icons continue to use text color for their stroke
+        <div className="text-accent-hue-1 group-hover:text-accent-hue-2 transition-colors duration-300">
           {React.cloneElement(icon as React.ReactElement, { size: 40, strokeWidth: 1.5 })}
-        </span>
+        </div>
       )}
-      {iconSrc && ( // Branch for SVGs from path using mask technique
+      {iconSrc && (
+        // SVGs from src will use the mask technique for color change
         <div
-          aria-label={iconAlt || title}
-          role="img"
           className="w-full h-full bg-accent-hue-1 group-hover:bg-accent-hue-2 transition-colors duration-300"
           style={{
             maskImage: `url(${iconSrc})`,
@@ -35,6 +35,8 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ icon, iconSrc, iconAlt, title
             maskPosition: 'center',
             WebkitMaskPosition: 'center',
           }}
+          role="img" // Accessibility: treat this div as an image
+          aria-label={iconAlt || title} // Provide accessible name
         />
       )}
     </div>
