@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Outfit } from 'next/font/google';
+import { Outfit, DM_Serif_Display } from 'next/font/google'; // Import DM_Serif_Display
 import './globals.css';
 import Footer from './components/Footer'; // Import the Footer component
 
@@ -9,6 +9,14 @@ const outfit = Outfit({
   display: 'swap',
   variable: '--font-outfit', // CSS variable for Outfit
   weight: ['300', '400', '500', '600', '700'], // Include relevant weights
+});
+
+// Configure the DM Serif Display font
+const dmSerifDisplay = DM_Serif_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-dm-serif-display',
+  weight: ['400'], // DM Serif Display typically comes in 400 weight
 });
 
 export const metadata: Metadata = {
@@ -65,7 +73,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${outfit.variable} scroll-smooth`}>
+    <html lang="en" className={`${outfit.variable} ${dmSerifDisplay.variable} scroll-smooth`}>
       <body className="bg-primary-neutral text-text-dark antialiased font-primary flex flex-col min-h-screen">
         <div className="flex-grow">
           {children}

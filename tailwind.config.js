@@ -19,8 +19,8 @@ module.exports = {
         'error': '#F44336',
       },
       fontFamily: {
-        primary: ['Outfit', 'sans-serif'],
-        secondary: ['"DM Serif Display"', 'serif'], // Ensure DM Serif Display is quoted if it contains spaces
+        primary: ['var(--font-outfit)', 'sans-serif'], // Use CSS variable for Outfit
+        secondary: ['var(--font-dm-serif-display)', 'serif'], // Use CSS variable for DM Serif Display
       },
       // Custom animations and keyframes can be added here later
       // e.g., for the logo reveal or "Who Knew?" moment
