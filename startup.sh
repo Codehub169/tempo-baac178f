@@ -9,13 +9,16 @@ echo "Changing to script directory: $(dirname "$0")"
 cd "$(dirname "$0")" || exit
 
 # Install dependencies
+# Using npm install; consider npm ci if a package-lock.json is present and strict reproducibility is key.
 echo "Installing project dependencies..."
 npm install
 
 # Build the application (e.g., Next.js)
+# This will use the 'build' script defined in package.json.
 echo "Building the application..."
 npm run build
 
-# Start the application (port is configured in package.json's start script)
+# Start the application, explicitly setting port to 9000 for the standalone server.
+# This is the correct way to run a Next.js app with output: 'standalone'.
 echo "Starting the application on port 9000..."
 PORT=9000 node .next/standalone/server.js
