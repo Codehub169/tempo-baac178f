@@ -13,18 +13,18 @@ interface ServiceItemProps {
 }
 
 const ServiceItem: React.FC<ServiceItemProps> = ({ icon, iconSrc, iconAlt, title, description }) => (
-  <div class="bg-primary-neutral p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col items-center text-center group transform hover:-translate-y-1">
-    <div class="mb-4 w-10 h-10 flex items-center justify-center">
+  <div className="bg-primary-neutral p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col items-center text-center group transform hover:-translate-y-1">
+    <div className="mb-4 w-10 h-10 flex items-center justify-center">
       {icon && (
         // Lucide icons continue to use text color for their stroke
-        <div class="text-accent-hue-1 group-hover:text-accent-hue-2 transition-colors duration-300">
+        <div className="text-accent-hue-1 group-hover:text-accent-hue-2 transition-colors duration-300">
           {React.cloneElement(icon as React.ReactElement, { size: 40, strokeWidth: 1.5 })}
         </div>
       )}
       {iconSrc && (
         // SVGs from src will use the mask technique for color change
         <div
-          class="w-full h-full bg-accent-hue-1 group-hover:bg-accent-hue-2 transition-colors duration-300"
+          className="w-full h-full bg-accent-hue-1 group-hover:bg-accent-hue-2 transition-colors duration-300"
           style={{
             maskImage: `url(${iconSrc})`,
             WebkitMaskImage: `url(${iconSrc})`,
@@ -40,8 +40,8 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ icon, iconSrc, iconAlt, title
         />
       )}
     </div>
-    <h3 class="font-serif text-xl text-text-dark mb-2">{title}</h3>
-    <p class="font-sans text-sm text-secondary-neutral italic">{description}</p>
+    <h3 className="font-serif text-xl text-text-dark mb-2">{title}</h3>
+    <p className="font-sans text-sm text-secondary-neutral italic">{description}</p>
   </div>
 );
 
@@ -84,14 +84,14 @@ const services: ServiceItemProps[] = [
 
 const WhatWeDoSection: React.FC = () => {
   return (
-    <section id="services" class="section-container bg-secondary-neutral/10">
-      <div class="text-center mb-12 md:mb-16">
-        <h2 class="h2-style">What We Do</h2>
-        <p class="p-style mt-2 max-w-2xl mx-auto">
+    <section id="services" className="section-container bg-secondary-neutral/10">
+      <div className="text-center mb-12 md:mb-16">
+        <h2 className="h2-style">What We Do</h2>
+        <p className="p-style mt-2 max-w-2xl mx-auto">
           We pour our heart into projects big and small, always aiming for that perfect blend of beauty and meaning.
         </p>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
         {services.map((service) => (
           <ServiceItem 
             key={service.title} // Using title as key, assuming titles are unique and stable

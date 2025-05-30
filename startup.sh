@@ -17,5 +17,5 @@ echo "Building the application..."
 npm run build
 
 # Start the application (port is configured in package.json's start script)
-echo "Starting the application on port 9000 (as per package.json)..."
-npm run start
+echo "Starting the application on port 9000..."
+PORT=9000 node .next/standalone/server.js
