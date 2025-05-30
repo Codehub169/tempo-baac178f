@@ -14,9 +14,29 @@ interface ServiceItemProps {
 
 const ServiceItem: React.FC<ServiceItemProps> = ({ icon, iconSrc, iconAlt, title, description }) => (
   <div className="bg-primary-neutral p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col items-center text-center group transform hover:-translate-y-1">
-    <div className="mb-4 text-accent-hue-1 group-hover:text-accent-hue-2 transition-colors duration-300 w-10 h-10 flex items-center justify-center">
-      {icon && React.cloneElement(icon as React.ReactElement, { size: 40, strokeWidth: 1.5 })}
-      {iconSrc && <Image src={iconSrc} alt={iconAlt || title} width={40} height={40} />}
+    <div className="mb-4 w-10 h-10 flex items-center justify-center"> {/* Common sizing and positioning wrapper */}
+      {icon && ( // Branch for Lucide icons
+        <span className="text-accent-hue-1 group-hover:text-accent-hue-2 transition-colors duration-300 flex items-center justify-center w-full h-full">
+          {React.cloneElement(icon as React.ReactElement, { size: 40, strokeWidth: 1.5 })}
+        </span>
+      )}
+      {iconSrc && ( // Branch for SVGs from path using mask technique
+        <div
+          aria-label={iconAlt || title}
+          role="img"
+          className="w-full h-full bg-accent-hue-1 group-hover:bg-accent-hue-2 transition-colors duration-300"
+          style={{
+            maskImage: `url(${iconSrc})`,
+            WebkitMaskImage: `url(${iconSrc})`,
+            maskSize: 'contain',
+            WebkitMaskSize: 'contain',
+            maskRepeat: 'no-repeat',
+            WebkitMaskRepeat: 'no-repeat',
+            maskPosition: 'center',
+            WebkitMaskPosition: 'center',
+          }}
+        />
+      )}
     </div>
     <h3 className="font-serif text-xl text-text-dark mb-2">{title}</h3>
     <p className="font-sans text-sm text-secondary-neutral italic">{description}</p>
@@ -70,7 +90,7 @@ const WhatWeDoSection: React.FC = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-        {services.map((service, index) => (
+        {services.map((service) => (
           <ServiceItem 
             key={service.title} // Using title as key, assuming titles are unique and stable
             icon={service.icon} 
